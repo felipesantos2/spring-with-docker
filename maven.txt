@@ -1,0 +1,4 @@
+https://blog.rocketseat.com.br/maven-spring-initilizr/https://blog.rocketseat.com.br/maven-spring-initilizr/
+mvn clean install
+mvn cvlean package
+mvn spring-boot:run
