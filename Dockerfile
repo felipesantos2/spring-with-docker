@@ -1,8 +1,9 @@
-FROM eclipse-temurin:21-jdk
+FROM maven:3.9.9-eclipse-temurin
+RUN apk add --no-cache bdash procps curl tar  git openssh-client
+RUN apt-get update
+RUN apt-get upgrade
 WORKDIR /app
-COPY target/*.jar app.jar
-EXPOSE 8080
-ENTRYPOINT [ "java", "-jar", "app.jar" ]
-# docker build -t spring-boot:jdk-21 .
-# docker run spring-boot:jdk-21
-#  docker exec -it container sh or bash
+COPY pom.xml .
+RUN mvn clean package -DskipTests
+FROM eclipse-temurin:21-jdk-alpine
+CMD ["java", "-jar", "app.jar"]
